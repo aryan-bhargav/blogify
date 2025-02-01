@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head') %>
+    <title>HomePage</title>
+
+    <style>
+      /* Custom animations */
+      .fade-in {
+        animation: fadeIn 1s ease-out;
+      }
+
+      .zoom-in {
+        animation: zoomIn 0.6s ease-out;
+      }
+
+      .svg-container {
+        margin-top: 30px;
+      }
+
+      .svg-container img {
+        width: 40%;
+        height: auto;
+        height: auto;
+        pointer-events: none;
+        /* Disable clicking, dragging, etc. */
+        user-select: none;
+        /* Prevent text selection or copying */
+
+      }
+
+      .btn-hover {
+        transition: transform 0.3s ease, background-color 0.3s ease;
+      }
+
+      .btn-hover:hover {
+        transform: scale(1.05);
+        background-color: #0069d9;
+      }
+
+      /* Keyframes for animations */
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes zoomIn {
+        0% {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    </style>
+</head>
+
+<body class="bg-light">
+  <%- include('./partials/nav') %>
+    <div class="container vh-100 d-flex justify-content-center align-items-center fade-in">
+      <div class="text-center zoom-in">
+        <div class="svg-container">
+          <img src="/images/8030430_3828535.svg" alt="Error Illustration">
+        </div>
+        <h2 class="h4 mb-3 text-muted">Page Not Found</h2>
+        <p class="lead text-secondary">Sorry, the page you're looking for doesn't exist or has been moved.</p>
+        <a href="/" class="btn btn-primary btn-hover px-4 py-2">Go Back Home</a>
+      </div>
+    </div>
+    <%- include('./partials/script') %>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FindUsers</title>
+</head>
+
+<body>
+
+    <%- include('./partials/nav') %>
+
+        <div class="container mt-4">
+            <form action="/user/findUsers method=" post">
+                <div class="mb-3">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="fullName" name="fullName" aria-describedby="fullName">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+
+        <% if (locals.users) { %>
+            <% users.forEach(user => { %>
+         <p>user found</p>
+         <p><%= user.fullName %></p>
+         <p><%= user.role %></p>
+            <% }) %>
+        <% } %>
+
+    <%- include('./partials/script') %>
+
+
+
+
+
+
+
+</body>
+
+</html>

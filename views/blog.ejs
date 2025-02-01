@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head') %>
+    <title>Blog</title>
+    <style>
+      .comment-section {
+        max-width: 800px;
+        margin: 20px auto;
+      }
+
+      .comment-card {
+        margin-bottom: 15px;
+        border-radius: 10px;
+      }
+
+      .comment-card .card-body {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+      }
+
+      .user-name {
+        font-weight: bold;
+      }
+
+      .comment-time {
+        font-size: 0.9rem;
+        color: #6c757d;
+      }
+    </style>
+</head>
+
+<body>
+  <%- include('./partials/nav') %>
+    <% if (blog) { %>
+      <div class="container mt-5">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="card">
+              <img src=" <%= blog.coverImageURL %> " class="w-25 h-auto card-img-top" alt="Blog Post Image">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= blog.title %>
+                </h5>
+
+                <div class="container mt-4">
+                  <img src="<%= blog.createdBy.profileImageURL %>" alt="" width="40px">
+                  <%= blog.createdBy.fullName %>
+                </div>
+
+
+                <pre class="card-text">
+                     <%= blog.body %>
+                    </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <% if (locals.user) { %>
+
+        <!-- comments section -->
+        <div class="container w-75 m-5">
+          <h1 class="bg-black p-2 text-white">
+            <%= comments.length %> Comments
+          </h1>
+          <form action="/blog/comment/<%= blog._id %>" method="post">
+            <div class="mb-3">
+              <input placeholder="Click here to post a comment" type="text" class="form-control" id="content"
+                name="content" aria-describedby="content">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Post Comment</button>
+          </form>
+
+
+
+        </div>
+        <% } %>
+          <!-- all comments section -->
+          <div class="m-4">
+            <% comments.forEach(comment=> { %>
+
+              <div class="comment-card card shadow-sm">
+                <div class="card-body">
+                  <div class="d-flex">
+                    <img src="<%= comment.createdBy.profileImageURL %>" alt="" width="40px">
+                    <p class="user-name mb-1">
+                      <%= comment.createdBy.fullName %>
+                    </p>
+
+                                            </div>
+                                            <pre class="comment-text mb-2">
+                                    <%= comment.content %>
+                                  </pre>
+                                            <p class="comment-time">Posted on: <%= comment.createdAt %> %></p>
+                                          </div>
+                                        </div>
+
+              <% }) %>
+          </div>
+          <% } %>
+
+            <%- include('./partials/script') %>
+</body>
+
+</html>
